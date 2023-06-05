@@ -8,11 +8,18 @@
 
 
 void measureQuality(const cv::Mat& src, const cv::Mat& ideal, const cv::Mat& result) {
+  auto make_gray = [](const cv::Mat& src, cv::Mat& dst) {
+    if (src.channels() == 1)
+      dst = src.clone();
+    else
+      cv::cvtColor(src, dst, cv::COLOR_BGR2GRAY);
+  };
+
   cv::Mat result_gray{};
-  cv::cvtColor(result, result_gray, cv::COLOR_BGR2GRAY);
+  make_gray(result, result_gray);
 
   cv::Mat ideal_gray{};
-  cv::cvtColor(ideal, ideal_gray, cv::COLOR_BGR2GRAY);
+  make_gray(ideal, ideal_gray);
 
   cv::Mat abs_error = cv::abs(ideal_gray - result_gray);
   uint32_t abs_error_sum = cv::sum(abs_error)[0];

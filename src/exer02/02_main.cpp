@@ -6,7 +6,7 @@
 
 
 void ideal_solution(const cv::Mat& src, cv::Mat& dst) {
-  cv::resize(src, dst, cv::Size(), 1.5, 0.7);
+  cv::cvtColor(src, dst, cv::COLOR_BGR2GRAY);
 }
 
 void test_solution(const cv::Mat& src, cv::Mat& dst) {
@@ -16,7 +16,7 @@ void test_solution(const cv::Mat& src, cv::Mat& dst) {
 }
 
 void main() {
-  cv::Mat src = cv::imread("../../../data/src.01.png");
+  cv::Mat src = cv::imread("../../../data/src.02.png");
 
   cv::Mat result{};
   test_solution(src, result);

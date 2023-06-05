@@ -1,1 +1,1 @@
-add_subdirectory(excer01)
+add_subdirectory(exer01)
